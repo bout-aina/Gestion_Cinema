@@ -24,7 +24,9 @@ public class Cinema {
     private Date date_creation;
     private int nbr_chaise;
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Statut statut;
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private TypeFilm type;
 }

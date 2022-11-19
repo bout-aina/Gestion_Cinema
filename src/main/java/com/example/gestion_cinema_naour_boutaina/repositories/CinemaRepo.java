@@ -17,8 +17,11 @@ public interface CinemaRepo extends JpaRepository<Cinema,Long> {
     @Query("select c from Cinema c where c.nom like :kw")
     List<Cinema> searchbyName(@Param("kw") String keyword);
 
-    //List<Cinema> findByStatut(Statut status);
-    //List<Cinema> findByTypeFilm(TypeFilm typeFilm);
+
+
+
+    List<Cinema> findByStatut(Statut status);
+    List<Cinema> findByType(TypeFilm typeFilm);
 
 
 }

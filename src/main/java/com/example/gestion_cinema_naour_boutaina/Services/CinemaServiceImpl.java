@@ -28,9 +28,6 @@ public class CinemaServiceImpl implements CinemaService {
         Cinema savedCinema=cinemaRepo.save(cinema);
         return dtoMapper.fromCinema(savedCinema);
     }
-
-
-
     @Override
     public List<CinemaDtos> listCinema() {
         List<Cinema> cinemas = cinemaRepo.findAll();
@@ -46,8 +43,20 @@ public class CinemaServiceImpl implements CinemaService {
     }
 
     @Override
-    public CinemaDtos updateCinema(CinemaDtos cinemaDtos, Long id) {
-        return null;
+    public Cinema updateCinema(Cinema cinemaDtos,Long id ) {
+        log.info("Updating  SALLE DE CINEMA");
+
+        Cinema dep=cinemaRepo.findById(id).orElse(null);
+
+        dep.setNom(cinemaDtos.getNom());
+        dep.setAdresse(cinemaDtos.getAdresse());
+        dep.setDate_creation(cinemaDtos.getDate_creation());
+        dep.setNbr_chaise(cinemaDtos.getNbr_chaise());
+        dep.setStatut(cinemaDtos.getStatut());
+        dep.setType(cinemaDtos.getType());
+
+        Cinema savedEvent = cinemaRepo.save(dep);
+        return savedEvent;
     }
 
     @Override
@@ -60,16 +69,26 @@ public class CinemaServiceImpl implements CinemaService {
 
     @Override
     public List<CinemaDtos> searchParStatus(Statut statut) {
-        return null;
+
+        List<Cinema> cinemas=cinemaRepo.findByStatut(statut);
+        List<CinemaDtos> cinemaDtos = cinemas.stream()
+                .map(cine -> dtoMapper.fromCinema(cine)).collect(Collectors.toList());
+        return cinemaDtos;
     }
 
     @Override
     public List<CinemaDtos> searchParType(TypeFilm typeFilm) {
-        return null;
+        List<Cinema> cinemas=cinemaRepo.findByType(typeFilm);
+        List<CinemaDtos> cinemaDtos = cinemas.stream()
+                .map(cine -> dtoMapper.fromCinema(cine)).collect(Collectors.toList());
+        return cinemaDtos;
     }
 
     @Override
-    public Cinema searchParId(Long id) {
-        return null;
+    public CinemaDtos searchParId(Long id) {
+
+        Cinema cinema = cinemaRepo.findById(id).orElse(null);
+        CinemaDtos cinemaDtos = dtoMapper.fromCinema(cinema);
+        return  cinemaDtos;
     }
 }

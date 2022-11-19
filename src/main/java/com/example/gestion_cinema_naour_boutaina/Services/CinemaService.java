@@ -11,12 +11,12 @@ public interface CinemaService {
     CinemaDtos saveCinema(CinemaDtos cinemaDtos);
     List<CinemaDtos> listCinema();
     void deleteCinema(Long idSalle);
-    CinemaDtos updateCinema(CinemaDtos cinemaDtos,Long id);
+    Cinema updateCinema(Cinema cinemaDtos,Long id);
 
     List<CinemaDtos> searchParNomsalle(String nom);
     List<CinemaDtos> searchParStatus(Statut statut);
     List<CinemaDtos> searchParType(TypeFilm typeFilm);
-    Cinema searchParId(Long id);
+    CinemaDtos searchParId(Long id);
 
 
 
