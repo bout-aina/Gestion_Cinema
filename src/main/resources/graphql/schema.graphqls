@@ -1,0 +1,14 @@
+type Query {
+    getcinemas: [Cinema]
+
+}
+
+type Cinema {
+    id:ID,
+    nom:String,
+    adresse:String,
+    date_creation: String,
+    nbr_chaise :Int,
+    statut : String,
+    type:String
+}
